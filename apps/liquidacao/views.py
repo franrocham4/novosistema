@@ -37,10 +37,13 @@ def index(request):
     return render(request, 'liquidacao/index.html', context)
 
 
+API_RECORDS_LIMIT = 200
+
+
 def api_data(request):
     try:
         data = get_liquidacao_data()
-        data['records'] = data['records'][:200]  # limit for API
+        data['records'] = data['records'][:API_RECORDS_LIMIT]
         return JsonResponse(data, safe=False)
     except FileNotFoundError as e:
         return JsonResponse({'error': str(e)}, status=404)

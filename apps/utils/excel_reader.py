@@ -124,6 +124,7 @@ def get_contratos_data():
 
 def get_empenho_data():
     wb = _get_workbook()
+    # Note: sheet name has a trailing space as defined in the Excel file
     ws = wb['EMPENHO ']
 
     header_row = 3
