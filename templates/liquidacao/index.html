@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load brl_filters %}
 {% block title %}Liquidação 2025{% endblock %}
 {% block page_title %}Liquidação 2025{% endblock %}
 
@@ -15,7 +16,7 @@
         <div class="card kpi-card border-start border-primary border-4">
             <div class="card-body text-center">
                 <p class="kpi-label">Total Bruto</p>
-                <div class="kpi-value text-primary" style="font-size:1.1rem;">R$ {{ data.totais.total_bruto|floatformat:2 }}</div>
+                <div class="kpi-value text-primary" style="font-size:1.1rem;">R$ {{ data.totais.total_bruto|brl }}</div>
             </div>
         </div>
     </div>
@@ -23,7 +24,7 @@
         <div class="card kpi-card border-start border-danger border-4">
             <div class="card-body text-center">
                 <p class="kpi-label">Total Retenção</p>
-                <div class="kpi-value text-danger" style="font-size:1.1rem;">R$ {{ data.totais.total_retencao|floatformat:2 }}</div>
+                <div class="kpi-value text-danger" style="font-size:1.1rem;">R$ {{ data.totais.total_retencao|brl }}</div>
             </div>
         </div>
     </div>
@@ -31,7 +32,7 @@
         <div class="card kpi-card border-start border-info border-4">
             <div class="card-body text-center">
                 <p class="kpi-label">Total Líquido</p>
-                <div class="kpi-value text-info" style="font-size:1.1rem;">R$ {{ data.totais.total_liquido|floatformat:2 }}</div>
+                <div class="kpi-value text-info" style="font-size:1.1rem;">R$ {{ data.totais.total_liquido|brl }}</div>
             </div>
         </div>
     </div>
@@ -39,7 +40,7 @@
         <div class="card kpi-card border-start border-success border-4">
             <div class="card-body text-center">
                 <p class="kpi-label">Total Pago</p>
-                <div class="kpi-value text-success" style="font-size:1.1rem;">R$ {{ data.totais.total_pago|floatformat:2 }}</div>
+                <div class="kpi-value text-success" style="font-size:1.1rem;">R$ {{ data.totais.total_pago|brl }}</div>
             </div>
         </div>
     </div>
@@ -47,7 +48,7 @@
         <div class="card kpi-card border-start border-warning border-4">
             <div class="card-body text-center">
                 <p class="kpi-label">Em Atraso</p>
-                <div class="kpi-value text-warning" style="font-size:1.1rem;">R$ {{ data.totais.em_atraso|floatformat:2 }}</div>
+                <div class="kpi-value text-warning" style="font-size:1.1rem;">R$ {{ data.totais.em_atraso|brl }}</div>
             </div>
         </div>
     </div>
@@ -55,7 +56,7 @@
         <div class="card kpi-card border-start border-secondary border-4">
             <div class="card-body text-center">
                 <p class="kpi-label">A Pagar</p>
-                <div class="kpi-value text-secondary" style="font-size:1.1rem;">R$ {{ data.totais.a_pagar|floatformat:2 }}</div>
+                <div class="kpi-value text-secondary" style="font-size:1.1rem;">R$ {{ data.totais.a_pagar|brl }}</div>
             </div>
         </div>
     </div>
@@ -141,11 +142,11 @@
                         <td>{{ r.mes_desembolso }}</td>
                         <td>{{ r.periodo_inicial }}</td>
                         <td>{{ r.periodo_final }}</td>
-                        <td class="text-end">{{ r.valor_bruto|floatformat:2 }}</td>
-                        <td class="text-end text-danger">{{ r.valor_retencao|floatformat:2 }}</td>
-                        <td class="text-end fw-semibold">{{ r.valor_liquido|floatformat:2 }}</td>
+                        <td class="text-end">{{ r.valor_bruto|brl }}</td>
+                        <td class="text-end text-danger">{{ r.valor_retencao|brl }}</td>
+                        <td class="text-end fw-semibold">{{ r.valor_liquido|brl }}</td>
                         <td>{{ r.vencimento }}</td>
-                        <td class="text-end text-success">{{ r.valores_pagos|floatformat:2 }}</td>
+                        <td class="text-end text-success">{{ r.valores_pagos|brl }}</td>
                         <td>{{ r.pagto }}</td>
                         <td>
                             {% if r.status == 'PAGO' %}

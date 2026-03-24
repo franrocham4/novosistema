@@ -91,9 +91,6 @@
             <a href="{% url 'liquidacao:index' %}" class="nav-link {% if request.resolver_match.app_name == 'liquidacao' %}active{% endif %}">
                 <i class="bi bi-cash-stack me-2"></i> Liquidação 2025
             </a>
-            <a href="{% url 'contratos:index' %}" class="nav-link {% if request.resolver_match.app_name == 'contratos' %}active{% endif %}">
-                <i class="bi bi-file-earmark-text me-2"></i> Alt. Orçamentária
-            </a>
             <a href="{% url 'empenho:index' %}" class="nav-link {% if request.resolver_match.app_name == 'empenho' %}active{% endif %}">
                 <i class="bi bi-journal-check me-2"></i> Empenho
             </a>
