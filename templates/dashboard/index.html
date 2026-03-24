@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load brl_filters %}
 
 {% block title %}Dashboard - Controle de Pagamentos 2025{% endblock %}
 {% block page_title %}Dashboard Principal{% endblock %}
@@ -23,7 +24,7 @@
                 <div class="d-flex justify-content-between align-items-start">
                     <div>
                         <p class="kpi-label">Total Bruto</p>
-                        <div class="kpi-value text-primary">R$ {{ data.liquidacao.totais.total_bruto|floatformat:2 }}</div>
+                        <div class="kpi-value text-primary">R$ {{ data.liquidacao.totais.total_bruto|brl }}</div>
                     </div>
                     <i class="bi bi-cash kpi-icon text-primary"></i>
                 </div>
@@ -36,7 +37,7 @@
                 <div class="d-flex justify-content-between align-items-start">
                     <div>
                         <p class="kpi-label">Total Retenção</p>
-                        <div class="kpi-value text-danger">R$ {{ data.liquidacao.totais.total_retencao|floatformat:2 }}</div>
+                        <div class="kpi-value text-danger">R$ {{ data.liquidacao.totais.total_retencao|brl }}</div>
                     </div>
                     <i class="bi bi-dash-circle kpi-icon text-danger"></i>
                 </div>
@@ -49,7 +50,7 @@
                 <div class="d-flex justify-content-between align-items-start">
                     <div>
                         <p class="kpi-label">Total Líquido</p>
-                        <div class="kpi-value text-info">R$ {{ data.liquidacao.totais.total_liquido|floatformat:2 }}</div>
+                        <div class="kpi-value text-info">R$ {{ data.liquidacao.totais.total_liquido|brl }}</div>
                     </div>
                     <i class="bi bi-graph-up kpi-icon text-info"></i>
                 </div>
@@ -62,7 +63,7 @@
                 <div class="d-flex justify-content-between align-items-start">
                     <div>
                         <p class="kpi-label">Total Pago</p>
-                        <div class="kpi-value text-success">R$ {{ data.liquidacao.totais.total_pago|floatformat:2 }}</div>
+                        <div class="kpi-value text-success">R$ {{ data.liquidacao.totais.total_pago|brl }}</div>
                     </div>
                     <i class="bi bi-check-circle kpi-icon text-success"></i>
                 </div>
@@ -75,7 +76,7 @@
                 <div class="d-flex justify-content-between align-items-start">
                     <div>
                         <p class="kpi-label">Em Atraso</p>
-                        <div class="kpi-value text-warning">R$ {{ data.liquidacao.totais.em_atraso|floatformat:2 }}</div>
+                        <div class="kpi-value text-warning">R$ {{ data.liquidacao.totais.em_atraso|brl }}</div>
                     </div>
                     <i class="bi bi-clock-history kpi-icon text-warning"></i>
                 </div>
@@ -88,7 +89,7 @@
                 <div class="d-flex justify-content-between align-items-start">
                     <div>
                         <p class="kpi-label">A Pagar</p>
-                        <div class="kpi-value text-secondary">R$ {{ data.liquidacao.totais.a_pagar|floatformat:2 }}</div>
+                        <div class="kpi-value text-secondary">R$ {{ data.liquidacao.totais.a_pagar|brl }}</div>
                     </div>
                     <i class="bi bi-hourglass-split kpi-icon text-secondary"></i>
                 </div>
@@ -127,7 +128,7 @@
         <div class="card kpi-card text-center">
             <div class="card-body">
                 <i class="bi bi-journal-check fs-2 text-primary mb-2"></i>
-                <div class="kpi-value text-primary">{{ data.empenho.totais.total_empenho|floatformat:2 }}</div>
+                <div class="kpi-value text-primary">{{ data.empenho.totais.total_empenho|brl }}</div>
                 <p class="kpi-label">Total Empenhado</p>
             </div>
         </div>
@@ -136,7 +137,7 @@
         <div class="card kpi-card text-center">
             <div class="card-body">
                 <i class="bi bi-check2-all fs-2 text-success mb-2"></i>
-                <div class="kpi-value text-success">{{ data.empenho.totais.total_liquidado|floatformat:2 }}</div>
+                <div class="kpi-value text-success">{{ data.empenho.totais.total_liquidado|brl }}</div>
                 <p class="kpi-label">Total Liquidado (Empenho)</p>
             </div>
         </div>
@@ -145,7 +146,7 @@
         <div class="card kpi-card text-center">
             <div class="card-body">
                 <i class="bi bi-arrow-counterclockwise fs-2 text-warning mb-2"></i>
-                <div class="kpi-value text-warning">{{ data.empenho.totais.total_estorno|floatformat:2 }}</div>
+                <div class="kpi-value text-warning">{{ data.empenho.totais.total_estorno|brl }}</div>
                 <p class="kpi-label">Total Estorno</p>
             </div>
         </div>
@@ -154,7 +155,7 @@
         <div class="card kpi-card text-center">
             <div class="card-body">
                 <i class="bi bi-piggy-bank fs-2 text-info mb-2"></i>
-                <div class="kpi-value text-info">{{ data.empenho.totais.total_saldo|floatformat:2 }}</div>
+                <div class="kpi-value text-info">{{ data.empenho.totais.total_saldo|brl }}</div>
                 <p class="kpi-label">Saldo Empenho</p>
             </div>
         </div>
@@ -170,21 +171,14 @@
             </div>
             <div class="card-body">
                 <div class="row g-3">
-                    <div class="col-md-4">
+                    <div class="col-md-6">
                         <a href="{% url 'liquidacao:index' %}" class="btn btn-outline-primary w-100 py-3">
                             <i class="bi bi-cash-stack fs-4 d-block mb-1"></i>
                             Liquidação 2025<br>
                             <small class="text-muted">{{ data.liquidacao.records|length }} registros</small>
                         </a>
                     </div>
-                    <div class="col-md-4">
-                        <a href="{% url 'contratos:index' %}" class="btn btn-outline-secondary w-100 py-3">
-                            <i class="bi bi-file-earmark-text fs-4 d-block mb-1"></i>
-                            Alt. Orçamentária<br>
-                            <small class="text-muted">Programa/Projeto/Ficha</small>
-                        </a>
-                    </div>
-                    <div class="col-md-4">
+                    <div class="col-md-6">
                         <a href="{% url 'empenho:index' %}" class="btn btn-outline-info w-100 py-3">
                             <i class="bi bi-journal-check fs-4 d-block mb-1"></i>
                             Empenho<br>
@@ -272,3 +266,4 @@ new Chart(document.getElementById('financeChart'), {
 </script>
 {% endif %}
 {% endblock %}
+

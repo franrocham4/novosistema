@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load brl_filters %}
 {% block title %}Empenho 2025{% endblock %}
 {% block page_title %}Cadastro de Empenho 2025{% endblock %}
 
@@ -15,7 +16,7 @@
         <div class="card kpi-card border-start border-primary border-4">
             <div class="card-body text-center">
                 <p class="kpi-label">Total Empenhado</p>
-                <div class="kpi-value text-primary" style="font-size:1.15rem;">R$ {{ data.totais.total_empenho|floatformat:2 }}</div>
+                <div class="kpi-value text-primary" style="font-size:1.15rem;">R$ {{ data.totais.total_empenho|brl }}</div>
             </div>
         </div>
     </div>
@@ -23,7 +24,7 @@
         <div class="card kpi-card border-start border-success border-4">
             <div class="card-body text-center">
                 <p class="kpi-label">Total Liquidado</p>
-                <div class="kpi-value text-success" style="font-size:1.15rem;">R$ {{ data.totais.total_liquidado|floatformat:2 }}</div>
+                <div class="kpi-value text-success" style="font-size:1.15rem;">R$ {{ data.totais.total_liquidado|brl }}</div>
             </div>
         </div>
     </div>
@@ -31,7 +32,7 @@
         <div class="card kpi-card border-start border-warning border-4">
             <div class="card-body text-center">
                 <p class="kpi-label">Total Estorno</p>
-                <div class="kpi-value text-warning" style="font-size:1.15rem;">R$ {{ data.totais.total_estorno|floatformat:2 }}</div>
+                <div class="kpi-value text-warning" style="font-size:1.15rem;">R$ {{ data.totais.total_estorno|brl }}</div>
             </div>
         </div>
     </div>
@@ -39,7 +40,7 @@
         <div class="card kpi-card border-start border-info border-4">
             <div class="card-body text-center">
                 <p class="kpi-label">Saldo Empenho</p>
-                <div class="kpi-value text-info" style="font-size:1.15rem;">R$ {{ data.totais.total_saldo|floatformat:2 }}</div>
+                <div class="kpi-value text-info" style="font-size:1.15rem;">R$ {{ data.totais.total_saldo|brl }}</div>
             </div>
         </div>
     </div>
@@ -111,11 +112,11 @@
                         <td>{{ r.cod_empresa }}</td>
                         <td title="{{ r.empresa }}">{{ r.empresa|truncatechars:28 }}</td>
                         <td>{{ r.empenho }}</td>
-                        <td class="text-end">{{ r.valor_empenho|floatformat:2 }}</td>
-                        <td class="text-end text-danger">{{ r.estorno|floatformat:2 }}</td>
-                        <td class="text-end">{{ r.saldo_empenho|floatformat:2 }}</td>
-                        <td class="text-end text-success">{{ r.liquidado|floatformat:2 }}</td>
-                        <td class="text-end fw-semibold {% if r.saldo > 0 %}text-info{% endif %}">{{ r.saldo|floatformat:2 }}</td>
+                        <td class="text-end">{{ r.valor_empenho|brl }}</td>
+                        <td class="text-end text-danger">{{ r.estorno|brl }}</td>
+                        <td class="text-end">{{ r.saldo_empenho|brl }}</td>
+                        <td class="text-end text-success">{{ r.liquidado|brl }}</td>
+                        <td class="text-end fw-semibold {% if r.saldo > 0 %}text-info{% endif %}">{{ r.saldo|brl }}</td>
                     </tr>
                     {% empty %}
                     <tr><td colspan="14" class="text-center text-muted py-4">Nenhum registro encontrado.</td></tr>

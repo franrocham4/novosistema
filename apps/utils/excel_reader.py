@@ -91,37 +91,6 @@ def get_liquidacao_data():
     }
 
 
-def get_contratos_data():
-    wb = _get_workbook()
-    ws = wb['ALT. ORÇ. E PROJ.']
-
-    header_row = 5
-    data_start = 6
-
-    records = []
-    for row in ws.iter_rows(min_row=data_start, values_only=True):
-        if not any(v is not None for v in row[:9]):
-            continue
-        records.append({
-            'programa_anulado': row[1] or '',
-            'projeto_anulado': row[2] or '',
-            'ficha_anulado': row[3] or '',
-            'programa_suplementado': row[4] or '',
-            'projeto_suplementado': row[5] or '',
-            'ficha_suplementado': row[6] or '',
-            'valor': _fmt_number(row[7]),
-            'justificativa': row[8] or '',
-        })
-
-    total_valor = sum(r['valor'] for r in records)
-
-    return {
-        'records': records,
-        'total_valor': total_valor,
-        'ultima_atualizacao': _get_file_mtime(),
-    }
-
-
 def get_empenho_data():
     wb = _get_workbook()
     # Note: sheet name has a trailing space as defined in the Excel file

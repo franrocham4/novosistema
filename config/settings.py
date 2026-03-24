@@ -43,8 +43,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'apps.dashboard',
     'apps.liquidacao',
-    'apps.contratos',
     'apps.empenho',
+    'apps.utils',
 ]
 
 # Excel file path - can be overridden via environment variable
